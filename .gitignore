@@ -34,7 +34,6 @@ backend/HELP.md
 backend/src/**/resources/application.yml
 # ─── Frontend (Angular) ───────────────────────────────────────────────────
 frontend/node_modules/
-frontend/dist/
 frontend/.angular/
 frontend/.cache/
 frontend/tmp/

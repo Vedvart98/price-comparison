@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/compare")
+// @RequestMapping("/")
 // @CrossOrigin(origins = {"http://localhost:4200", "${allowed.origins:}"})
 @Slf4j
 @RequiredArgsConstructor
@@ -18,9 +18,9 @@ public class ComparisonController {
 
     private final ComparisonOrchestrator orchestrator;
 
-     @GetMapping("/")
+    @GetMapping("/")
     @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.HEAD})
-    public ResponseEntity<String> health() {
+    public ResponseEntity<String> healthHome() {
         return ResponseEntity.ok("Price comparison running");
     }
 
@@ -28,7 +28,7 @@ public class ComparisonController {
      * POST /api/v1/compare
      * Body: { "userInput": "milk, coconut oil, charger", "pincode": "110001" }
      */
-    @PostMapping
+    @PostMapping("/api/v1/compare")
     public ResponseEntity<CompareResponse> compare(@Valid @RequestBody CompareRequest request) {
         log.info("POST /compare | input='{}' pincode={}",
             request.getUserInput(), request.getPincode());

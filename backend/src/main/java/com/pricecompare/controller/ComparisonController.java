@@ -28,7 +28,7 @@ public class ComparisonController {
      * POST /api/v1/compare
      * Body: { "userInput": "milk, coconut oil, charger", "pincode": "110001" }
      */
-    @PostMapping("/api/v1/compare")
+    @GetMapping("/api/v1/compare")
     public ResponseEntity<CompareResponse> compare(@Valid @RequestBody CompareRequest request) {
         log.info("POST /compare | input='{}' pincode={}",
             request.getUserInput(), request.getPincode());

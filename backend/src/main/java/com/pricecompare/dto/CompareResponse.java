@@ -1,11 +1,16 @@
 package com.pricecompare.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CompareResponse {
     private List<ExtractedItem> extractedItems;
     private List<ItemComparison> comparisons;

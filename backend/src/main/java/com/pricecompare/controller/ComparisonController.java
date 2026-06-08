@@ -29,11 +29,14 @@ public class ComparisonController {
      * Body: { "userInput": "milk, coconut oil, charger", "pincode": "110001" }
      */
     @GetMapping("/api/v1/compare")
-    public ResponseEntity<CompareResponse> compare(@Valid @RequestBody CompareRequest request) {
-        log.info("POST /compare | input='{}' pincode={}",
-            request.getUserInput(), request.getPincode());
-        CompareResponse response = orchestrator.compare(request);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<CompareResponse> compare(@RequestParam String userInput, @RequestParam String pincode) {
+        log.info("GET /compare | input='{}' pincode={}",
+            userInput,pincode);
+            CompareRequest request = new CompareRequest();
+            request.setUserInput(userInput);
+            request.setPincode(pincode);
+            CompareResponse response = orchestrator.compare(request);
+            return ResponseEntity.ok(response);
     }
 
     /**

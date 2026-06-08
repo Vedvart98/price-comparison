@@ -18,6 +18,12 @@ public class ComparisonController {
 
     private final ComparisonOrchestrator orchestrator;
 
+     @GetMapping("/")
+    @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.HEAD})
+    public ResponseEntity<String> health() {
+        return ResponseEntity.ok("Price comparison running");
+    }
+
     /**
      * POST /api/v1/compare
      * Body: { "userInput": "milk, coconut oil, charger", "pincode": "110001" }

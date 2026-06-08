@@ -5,7 +5,7 @@ import org.springframework.http.*;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.data.redis.RedisConnectionFailureException;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -34,5 +34,12 @@ public class GlobalExceptionHandler {
         log.error("Unhandled exception", ex);
         return ResponseEntity.internalServerError()
             .body(Map.of("error", "Internal server error"));
+    }
+
+    @ExceptionHandler(RedisConnectionFailureException.class)
+    public ResponseEntity<Map<String, Object>> handleRedis(RedisConnectionFailureException ex) {
+        log.error("Redis is unreachable — caching disabled. {}", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+            .body(Map.of("error", "Service temporarily unavailable. Please try again."));
     }
 }

@@ -5,6 +5,8 @@ import lombok.Data;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ExtractedItem {
     private String rawText;            // original word from user
     private String normalized;         // lowercased, singularized

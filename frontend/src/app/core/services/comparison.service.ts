@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { CompareRequest, CompareResponse } from '../models/comparison.models';
@@ -12,9 +12,11 @@ export class ComparisonService {
   constructor(private http: HttpClient) {}
 
   compare(request: CompareRequest): Observable<CompareResponse> {
-    return this.http
-      .post<CompareResponse>(`${this.api}/compare`, request)
-      .pipe(retry(1), catchError(this.handleError));
+    const params = new HttpParams()
+      .set('userInput',request.userInput)
+      .set('pincode',request.pincode);
+    return this.http.get<CompareResponse>(`${this.api}/compare`, {params})
+      .pipe(retry(1),catchError(this.handleError));
   }
 
   private handleError(err: HttpErrorResponse) {

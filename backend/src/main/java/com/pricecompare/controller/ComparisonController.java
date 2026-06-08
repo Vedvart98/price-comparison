@@ -10,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-// @RequestMapping("/")
-// @CrossOrigin(origins = {"http://localhost:4200", "${allowed.origins:}"})
 @Slf4j
 @RequiredArgsConstructor
 public class ComparisonController {

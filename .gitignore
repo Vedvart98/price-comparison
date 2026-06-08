@@ -37,7 +37,7 @@ frontend/dist/
 frontend/.angular/
 frontend/.cache/
 frontend/tmp/
-
+frontend/proxy.config.json
 # ─── Logs ─────────────────────────────────────────────────────────────────
 *.log
 log/
